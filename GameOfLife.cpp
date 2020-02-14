@@ -45,7 +45,7 @@ public:
 	}
 };
 
-class Game 
+class Game
 {
 public:
 	Matrix *main_matrix,*temperory_matrix;
@@ -77,9 +77,10 @@ public:
 
 	int modulus(int n,int m)
 	{
-		return ((n%m) + m)%m;
+		//return ((n%m) + m)%m;
+		return n%m
 	}
-	
+
 	void copy(Matrix *m1,Matrix *m2)
 	{
 		for (int i = 0; i < no_of_rows; ++i)
@@ -107,10 +108,10 @@ public:
 		if(main_matrix->mat[isub1][jadd1]) {c++;}
 		if(main_matrix->mat[isub1][jsub1]) {c++;}
 		if(main_matrix->mat[isub1][j]) {c++;}
-		
+
 		return c;
 	}
-	
+
 	int calculate_no_of_dead_cells(int i,int j)
 	{
 		int c = 0;
@@ -127,11 +128,11 @@ public:
 		if(!main_matrix->mat[isub1][jadd1]) {c++;}
 		if(!main_matrix->mat[isub1][jsub1]) {c++;}
 		if(!main_matrix->mat[isub1][j]) {c++;}
-		
+
 		return c;
 	}
 
-	
+
 	void calculate_temperory_matrix()
 	{
 		copy(main_matrix,temperory_matrix);
@@ -145,7 +146,7 @@ public:
 					if(neighbour_counter == 3)
 					{
 						temperory_matrix->mat[i][j] = 1;
-					}					
+					}
 				}
 				else if(main_matrix->mat[i][j] == 1)
 				{
@@ -164,11 +165,11 @@ public:
 		copy(temperory_matrix,main_matrix);
 	}
 
-	
+
 
 	void play_game()
-	{	
-		//system("clear");	
+	{
+		//system("clear");
 		usleep(100000);
 		cout<<"\n\nIttereation :- "<<++counter<<"\n\n";
 		display_main_matrix();
@@ -183,7 +184,7 @@ int main(int argc, char const *argv[])
 	cout<<"\n\nWelcome to Conor's Game of life simulated on C++\n\n"
 		<<"\nThe Matrix is as follows :- \n";
 	g->display_main_matrix();
-		
+
 	int x,y,choice = 1;
 	while(choice != 3)
 	{
@@ -213,7 +214,7 @@ int main(int argc, char const *argv[])
 				cout<<"Enter column position :- ";
 				cin>>y;
 				g->main_matrix->mat[x][y] = 0;
-				cout<<"\nCell Killed!\n";	
+				cout<<"\nCell Killed!\n";
 				g->display_main_matrix();
 				break;
 
@@ -253,12 +254,12 @@ int main(int argc, char const *argv[])
 				cout<<"\nWrong Input";
 				break;
 		}
-	}	
-	
+	}
+
 	while(1)
 		g->play_game();
 	return 0;
-	
+
 
 	//cout<<g->modulus(-1,5);
 	return 0;
